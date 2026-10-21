@@ -102,12 +102,9 @@
     state.done = true;
     const s = scoreData();
     show("screen-result");
-    $("#scoreNum").textContent = s.note.toString().replace(".", ",");
-    $("#scoreNum").className = `score-num ${s.passed ? "pass" : "fail"}`;
-    $("#badge").className = `badge ${s.passed ? "pass" : "fail"}`;
-    $("#badge").textContent = s.passed ? "Aprobado" : "No aprobado";
-    $("#resultSub").innerHTML = `${s.correct} de ${s.total} correctas.<br>
-      Se aprueba con ${exam.passMark} sobre ${exam.scale}.`;
+    $("#scoreNum").textContent = `${s.correct}/${s.total}`;
+    $("#scoreNum").className = `score-num${s.passed ? " pass" : ""}`;
+    $("#resultSub").textContent = `Acertaste ${s.correct} de ${s.total}.`;
     $("#topicBreakdown").innerHTML = Object.entries(s.byTopic)
       .map(([label, v]) => {
         const p = Math.round((v.ok / v.n) * 100);
@@ -168,13 +165,22 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
+  function init() {
     $("#qCount").textContent = String(exam.questions.length);
     $("#topicCount").textContent = String(new Set(exam.questions.map((q) => q.topic)).size);
     renderTopics();
-    $("#startBtn").addEventListener("click", start);
+    const startBtn = $("#startBtn");
+    if (startBtn) startBtn.addEventListener("click", start);
     $("#nextBtn").addEventListener("click", next);
     $("#prevBtn").addEventListener("click", prev);
     $("#retryBtn").addEventListener("click", reset);
-  });
+    window.startExam = start;
+  }
+
+  window.startExam = start;
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();

@@ -8,8 +8,10 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script src="js/questions.js" defer></script>
+  <script src="js/app.js" defer></script>
 </head>
 <body>
   <div class="bg"></div>
@@ -52,7 +54,7 @@
         </div>
         <div class="topics" id="topicCloud"></div>
         <div class="form-row">
-          <button class="btn" id="startBtn" type="button">Empezar evaluación</button>
+          <button class="btn" id="startBtn" type="button" onclick="window.startExam && window.startExam()">Empezar evaluación</button>
         </div>
       </div>
     </section>
@@ -89,8 +91,7 @@
     <section id="screen-result" class="screen">
       <div class="card result-hero">
         <div class="kicker"><i></i> Resultado</div>
-        <div class="score-num" id="scoreNum">0</div>
-        <div class="badge" id="badge"></div>
+        <div class="score-num" id="scoreNum">0/10</div>
         <p class="result-sub" id="resultSub"></p>
         <div class="nav" style="justify-content:center;margin-top:22px">
           <button class="btn ghost" id="retryBtn" type="button">Volver a intentar</button>
@@ -103,12 +104,9 @@
     </section>
 
     <footer>
-      <span>More Payment Evolution · Capacitación interna · No es un certificado oficial de AWS</span>
-      <span>Migración EKS en evaluación · GitOps / ArgoCD</span>
+      <span>More Payment Evolution</span>
+      <span>GitOps / ArgoCD</span>
     </footer>
   </div>
-
-  <script src="js/questions.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>

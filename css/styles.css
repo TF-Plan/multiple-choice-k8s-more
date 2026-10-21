@@ -74,6 +74,7 @@ body {
   top: 18%;
   z-index: -1;
   opacity: 0.18;
+  pointer-events: none;
   animation: chevronSlide 18s ease-in-out infinite;
 }
 .chevrons svg { width: 280px; height: auto; }
@@ -115,12 +116,14 @@ body {
   background:
     linear-gradient(135deg, rgba(24, 43, 83, 0.72), rgba(11, 18, 38, 0.55));
   box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
 }
+.hero > * { position: relative; z-index: 1; }
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background: linear-gradient(110deg, transparent 30%, rgba(234, 126, 36, 0.08) 48%, transparent 64%);
   animation: sheen 7s ease-in-out infinite;
 }
@@ -295,29 +298,13 @@ input[type="text"]:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rg
 
 .result-hero { text-align: center; padding: 18px 8px 8px; }
 .score-num {
-  font-size: clamp(72px, 12vw, 120px);
+  font-size: clamp(64px, 11vw, 104px);
   font-weight: 800;
   letter-spacing: -0.06em;
   line-height: 0.9;
-  background: linear-gradient(180deg, #fff, #c9d4ea);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #fff;
 }
-.score-num.pass { background-image: linear-gradient(180deg, #ffe1c4, var(--orange)); }
-.score-num.fail { background-image: linear-gradient(180deg, #ffd0d4, var(--bad)); }
-.badge {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-.badge.pass { background: var(--ok-bg); color: #7de3c2; }
-.badge.fail { background: var(--bad-bg); color: #ff9aa3; }
+.score-num.pass { color: #3dcea4; }
 .result-sub { color: var(--muted); margin: 14px auto 0; max-width: 56ch; }
 
 .topic-grid {
@@ -379,4 +366,7 @@ footer {
   .stats { grid-template-columns: 1fr 1fr; }
   .topic-grid { grid-template-columns: 1fr; }
   .topbar { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg::after, .orb, .chevrons, .hero::before { animation: none; }
 }
