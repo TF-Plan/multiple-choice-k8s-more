@@ -169,18 +169,17 @@
     $("#qCount").textContent = String(exam.questions.length);
     $("#topicCount").textContent = String(new Set(exam.questions.map((q) => q.topic)).size);
     renderTopics();
-    const startBtn = $("#startBtn");
-    if (startBtn) startBtn.addEventListener("click", start);
     $("#nextBtn").addEventListener("click", next);
     $("#prevBtn").addEventListener("click", prev);
     $("#retryBtn").addEventListener("click", reset);
-    window.startExam = start;
   }
 
   window.startExam = start;
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  document.addEventListener("click", (ev) => {
+    const btn = ev.target.closest("#startBtn");
+    if (!btn) return;
+    ev.preventDefault();
+    start();
+  });
+  init();
 })();
