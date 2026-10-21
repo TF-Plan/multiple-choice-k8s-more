@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evaluación EKS / Kubernetes · More Payment Evolution</title>
+  <meta name="description" content="Evaluación interna de capacitación EKS/Kubernetes. Autocorrección, nota sobre 10, se aprueba con 6.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="chevrons" aria-hidden="true">
+    <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="200,110 80,210 55,210 175,110 55,10 80,10" fill="#ea7e24"/>
+      <polygon points="150,110 30,210 5,210 125,110 5,10 30,10" fill="#182b53"/>
+    </svg>
+  </div>
+  <div class="confetti" id="confetti"></div>
+
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="https://www.morepaymentevolution.com/" target="_blank" rel="noopener">
+        <img src="assets/logo-white.svg" alt="More Payment Evolution">
+        <span class="brand-meta">
+          <small>Infraestructura</small>
+          <strong>Test interno</strong>
+        </span>
+      </a>
+      <span class="pill">Capacitación EKS/K8s</span>
+    </header>
+
+    <section id="screen-intro" class="screen active">
+      <div class="hero">
+        <div class="kicker"><i></i> Evaluación preventiva</div>
+        <h1>Medí tu piso en <em>EKS</em> antes de decidir.</h1>
+        <p class="lead">
+          Diez preguntas concretas para ver si podés operar EKS, no solo ECS:
+          control plane, CNI, IRSA, Karpenter, Spot, Ingress y troubleshooting.
+          La nota es sobre 10; se aprueba con 6. Al final ves cada acierto y cada error.
+        </p>
+        <div class="stats">
+          <div class="stat"><b id="qCount">10</b><span>preguntas</span></div>
+          <div class="stat"><b id="topicCount">10</b><span>temas EKS</span></div>
+          <div class="stat"><b>6 / 10</b><span>nota de aprobación</span></div>
+          <div class="stat"><b>~8 min</b><span>tiempo estimado</span></div>
+        </div>
+        <div class="topics" id="topicCloud"></div>
+        <div class="form-row">
+          <button class="btn" id="startBtn" type="button">Empezar evaluación</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-quiz" class="screen">
+      <div class="quiz-head">
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <span id="progText">Pregunta 1</span>
+            <span></span>
+            <span id="progPct">0%</span>
+          </div>
+          <div class="bar"><i id="bar"></i></div>
+        </div>
+        <div class="ring" aria-hidden="true">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="26" stroke="rgba(255,255,255,0.08)" stroke-width="6" fill="none"/>
+            <circle id="ringArc" cx="32" cy="32" r="26" stroke="#ea7e24" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <text id="ringLabel" x="32" y="36" text-anchor="middle">1</text>
+          </svg>
+        </div>
+      </div>
+      <div class="card">
+        <div class="q-topic" id="qTopic"></div>
+        <p class="q-text" id="qText"></p>
+        <div class="options" id="options"></div>
+        <div class="nav">
+          <button class="btn ghost" id="prevBtn" type="button">Anterior</button>
+          <button class="btn" id="nextBtn" type="button">Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-result" class="screen">
+      <div class="card result-hero">
+        <div class="kicker"><i></i> Resultado</div>
+        <div class="score-num" id="scoreNum">0</div>
+        <div class="badge" id="badge"></div>
+        <p class="result-sub" id="resultSub"></p>
+        <div class="nav" style="justify-content:center;margin-top:22px">
+          <button class="btn ghost" id="retryBtn" type="button">Volver a intentar</button>
+        </div>
+      </div>
+      <h2 style="margin:28px 0 12px;font-size:20px">Desglose por tema</h2>
+      <div class="topic-grid" id="topicBreakdown"></div>
+      <h2 style="margin:12px 0 12px;font-size:20px">Revisión de respuestas</h2>
+      <div class="review" id="review"></div>
+    </section>
+
+    <footer>
+      <span>More Payment Evolution · Capacitación interna · No es un certificado oficial de AWS</span>
+      <span>Migración EKS en evaluación · GitOps / ArgoCD</span>
+    </footer>
+  </div>
+
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
